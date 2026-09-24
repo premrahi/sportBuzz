@@ -7,6 +7,7 @@ import { db } from "../db/db.js";
 import { matches } from "../db/schema.js";
 import { getMatchStatus } from "../utils/match-status.js";
 import { desc } from "drizzle-orm";
+import { parse } from "dotenv";
 
 export const matchRouter = Router();
 
@@ -18,7 +19,7 @@ matchRouter.get("/", async (req, res) => {
   if (!parsed.success) {
     return res.status(400).json({
       message: "INVALID match query",
-      data: JSON.stringify(parsed.error),
+      data: parsed.error.issues,
     });
   }
 
@@ -43,7 +44,7 @@ matchRouter.post("/", async (req, res) => {
   if (!parsed.success) {
     return res.status(400).json({
       error: "INVALID payload.",
-      details: JSON.stringify(parsed.error),
+      details: parsed.error.issues,
     });
   }
 
