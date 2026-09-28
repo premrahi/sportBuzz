@@ -19,7 +19,7 @@ export const httpArcJet = arcjetKey
     })
   : null;
 
-export const wsArcJet = arcjetKey
+export const wsArcjet = arcjetKey
   ? arcjet({
       key: arcjetKey,
       rules: [
